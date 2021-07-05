@@ -7,25 +7,22 @@ using UnityEngine;
 public class Tower : MonoBehaviour
 {
     [SerializeField, Range(10f, 20f)] private float _targetingRange = 10f;
-    [SerializeField] private Arrow _arrow;
-    [SerializeField] private Human _human;
+    [SerializeField] private float _damage;
     
-    [Header("Shooting Settings")] [SerializeField]
-    private float _delayBetweenShoots;
-
+    [Header("Shooting Settings")] 
+    [SerializeField] private float _delayBetweenShoots;
+    [SerializeField] private Arrow _arrow;
+    
     public Vector3 Target { get; private set; }
+    public float Damage => _damage;
 
+    private Human _human;
     private float _timeAfterShoot;
     private TargetPoint _target;
 
     private const int ENEMY_LAYER_MASK = 1 << 9;
-
-    private Vector3 _lastTarget;
-
-    private void Awake()
-    {
-        _lastTarget = Vector3.zero;
-    }
+    
+    private void Awake() => _human = GetComponentInChildren<Human>();
 
     private void FixedUpdate()
     {
@@ -69,7 +66,7 @@ public class Tower : MonoBehaviour
     {
         var point = _target.Position;
         _human.transform.LookAt(point);
-
+        
         Target = point;
         
         _timeAfterShoot += Time.deltaTime;

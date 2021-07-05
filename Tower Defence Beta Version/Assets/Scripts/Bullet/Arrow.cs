@@ -16,7 +16,7 @@ public class Arrow : MonoBehaviour
     private Tower _tower;
 
     private Vector3 Target;
-    
+
     private void Awake()
     {
         _tower = FindObjectOfType<Tower>();
@@ -25,7 +25,7 @@ public class Arrow : MonoBehaviour
     private void FixedUpdate()
     {
         Target = _tower.Target;
-        transform.position = Vector3.Lerp(transform.position, Target, 
+        transform.position = Vector3.Lerp(transform.position, Target,
             _speed * Time.fixedDeltaTime);
     }
 
@@ -33,7 +33,7 @@ public class Arrow : MonoBehaviour
     {
         if (other.gameObject.TryGetComponent(out Enemy enemy))
         {
-            Debug.Log("EBAT'!");
+            enemy.ApplyDamage(_tower.Damage);
             Destroy(gameObject);
         }
     }
