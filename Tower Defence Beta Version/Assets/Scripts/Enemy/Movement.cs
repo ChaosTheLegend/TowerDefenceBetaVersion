@@ -6,13 +6,13 @@ using UnityEngine.AI;
 
 public class Movement : MonoBehaviour
 {
-    private EndPosition _endPosition;
+    private Castle _endPosition;
     
     private NavMeshAgent _agent;
     
     private void Awake()
     {
-        _endPosition = FindObjectOfType<EndPosition>();
+        _endPosition = FindObjectOfType<Castle>();
         _agent = GetComponent<NavMeshAgent>();
     }
 

@@ -79,7 +79,7 @@ public class Tower : MonoBehaviour
         }
     }
 
-    private void OnDrawGizmosSelected()
+    /*private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
         var position = transform.localPosition;
@@ -90,5 +90,5 @@ public class Tower : MonoBehaviour
         
         Gizmos.color = Color.red;
         Gizmos.DrawLine(position, _target.Position);
-    }
+    }*/
 }
