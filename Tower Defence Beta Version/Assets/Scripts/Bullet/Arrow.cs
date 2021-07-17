@@ -10,31 +10,24 @@ using Vector3 = UnityEngine.Vector3;
 public class Arrow : MonoBehaviour
 {
     [SerializeField] private float _speed;
-
     public float Speed => _speed;
 
     private Tower _tower;
-
     private Vector3 Target;
 
-    private void Awake()
-    {
-        _tower = FindObjectOfType<Tower>();
-    }
+    private void Awake() => _tower = FindObjectOfType<Tower>();
 
     private void FixedUpdate()
     {
-        Target = _tower.Target;
+        Target = _tower.Finder.Target.Position;
         transform.position = Vector3.Lerp(transform.position, Target,
             _speed * Time.fixedDeltaTime);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.TryGetComponent(out Enemy enemy))
-        {
-            enemy.ApplyDamage(_tower.Damage);
-            Destroy(gameObject);
-        }
+        if (!other.gameObject.TryGetComponent(out Enemy enemy)) return;
+        enemy.ApplyDamage(_tower.Shooter.Damage);
+        Destroy(gameObject);
     }
 }
