@@ -21,7 +21,7 @@ public class Game : MonoBehaviour
     {
         for (var i = 0; i < _countOfEnemy; i++)
         {
-            Instantiate(_enemy);
+            Instantiate(_enemy, _spawnPosition.position, Quaternion.identity);
             yield return new WaitForSeconds(_timeToSpawn);
         }
     }

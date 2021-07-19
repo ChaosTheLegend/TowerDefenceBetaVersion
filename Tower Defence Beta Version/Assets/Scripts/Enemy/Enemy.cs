@@ -9,7 +9,9 @@ public class Enemy : MonoBehaviour, IDamageable
     [SerializeField] private float _health;
     [SerializeField] private float _damage;
     
-    public event UnityAction ChangedHealthPoint;
+    public float Health => _health;
+    
+    public event UnityAction<float> ChangedHealthPoint;
     
     public float Scale { get; private set; }
 
@@ -17,18 +19,18 @@ public class Enemy : MonoBehaviour, IDamageable
 
     public void ApplyDamage(float damage)
     {
-        ChangedHealthPoint?.Invoke();
         _health -= damage;
+        ChangedHealthPoint?.Invoke(_health);
+
         if (_health <= 0)
             Destroy(gameObject);
     }
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.TryGetComponent(out Castle castle))
-        {
-            castle.ApplyDamage(_damage);
-            Destroy(gameObject);
-        }
+        if (!other.gameObject.TryGetComponent(out Castle castle)) return;
+        
+        castle.ApplyDamage(_damage);
+        Destroy(gameObject);
     }
 }

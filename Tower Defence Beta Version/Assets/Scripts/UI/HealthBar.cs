@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,7 +6,12 @@ using UnityEngine.UI;
 
 public abstract class HealthBar : MonoBehaviour
 {
-    public Slider Slider;
+    [SerializeField] private float _fillDuration;
+    protected Slider Slider { get; private set; }
     
-    public abstract void OnChangeHealth();
+    private void Awake() => Slider = GetComponent<Slider>();
+
+    protected float FillDuration => _fillDuration;
+    
+    public abstract void OnChangeHealth(float health);
 }

@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 public class EnemyHealthPoint : HealthBar
@@ -12,8 +9,5 @@ public class EnemyHealthPoint : HealthBar
     private void OnDisable() => _enemy.ChangedHealthPoint -= OnChangeHealth;
 
     //TODO UI FOR ENEMY
-    public override void OnChangeHealth()
-    {
-        Slider.DOValue(100, 100);
-    }
+    public override void OnChangeHealth(float health) => Slider.DOValue(health, FillDuration);
 }
