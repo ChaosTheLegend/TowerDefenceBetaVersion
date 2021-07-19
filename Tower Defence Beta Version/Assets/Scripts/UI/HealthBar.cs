@@ -13,5 +13,5 @@ public abstract class HealthBar : MonoBehaviour
 
     protected float FillDuration => _fillDuration;
     
-    public abstract void OnChangeHealth(float health);
+    public abstract void OnChangeHealth(int health);
 }

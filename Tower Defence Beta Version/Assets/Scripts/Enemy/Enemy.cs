@@ -11,7 +11,7 @@ public class Enemy : MonoBehaviour, IDamageable
     
     public float Health => _health;
     
-    public event UnityAction<float> ChangedHealthPoint;
+    public event UnityAction<int> ChangedHealthPoint;
     
     public float Scale { get; private set; }
 
@@ -20,7 +20,7 @@ public class Enemy : MonoBehaviour, IDamageable
     public void ApplyDamage(float damage)
     {
         _health -= damage;
-        ChangedHealthPoint?.Invoke(_health);
+        ChangedHealthPoint?.Invoke((int)_health);
 
         if (_health <= 0)
             Destroy(gameObject);

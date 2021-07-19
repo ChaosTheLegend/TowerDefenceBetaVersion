@@ -13,7 +13,7 @@ public class TowerShooter : MonoBehaviour
     public void Shoot(TargetPoint target, Human human)
     {
         var point = target.Position;
-        human.transform.LookAt(point);
+        human.transform.LookAt(point * Time.deltaTime);
         
         _timeAfterShoot += Time.deltaTime;
         if (!(_timeAfterShoot > _delayBetweenShoots)) return;
