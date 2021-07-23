@@ -7,14 +7,14 @@ using UnityEngine.AI;
 public class Movement : MonoBehaviour
 {
     private Castle _endPosition;
-    
-    private NavMeshAgent _agent;
+
+    public NavMeshAgent Agent { get; private set; }
     
     private void Awake()
     {
         _endPosition = FindObjectOfType<Castle>();
-        _agent = GetComponent<NavMeshAgent>();
+        Agent = GetComponent<NavMeshAgent>();
     }
 
-    private void Start() => _agent.SetDestination(_endPosition.transform.position);
+    private void Start() => Agent.SetDestination(_endPosition.transform.position);
 }

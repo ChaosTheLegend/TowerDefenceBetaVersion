@@ -14,11 +14,9 @@ public class TowerBuilding : MonoBehaviour
         {
             for (var y = 0; y < _size.y; y++)
             {
-                if ((x+y)%2 == 0) 
-                    Gizmos.color = new Color(0.78f, 0f, 1f, 0.36f);
-                else
-                    Gizmos.color = new Color(1f, 0.18f, 0f, 0.36f);
-                
+                Gizmos.color = (x+y)%2 == 0 ? new Color(0.78f, 0f, 1f, 0.36f) 
+                    : new Color(1f, 0.18f, 0f, 0.36f);
+
                 Gizmos.DrawCube(transform.position + new Vector3(x, 0, y), 
                     new Vector3(10,1f,10));
             }

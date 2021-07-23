@@ -9,13 +9,19 @@ public class Enemy : MonoBehaviour, IDamageable
     [SerializeField] private float _health;
     [SerializeField] private float _damage;
     
+    public Movement Movement { get; private set; }
+
     public float Health => _health;
     
     public event UnityAction<int> ChangedHealthPoint;
     
     public float Scale { get; private set; }
 
-    private void Awake() => Scale = transform.localScale.magnitude;
+    private void Awake()
+    {
+        Movement = GetComponent<Movement>();
+        Scale = transform.localScale.magnitude;
+    }
 
     public void ApplyDamage(float damage)
     {

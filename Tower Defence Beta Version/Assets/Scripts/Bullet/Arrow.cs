@@ -4,30 +4,23 @@ using System.Collections.Generic;
 using System.Net;
 using System.Numerics;
 using UnityEngine;
-using Vector2 = UnityEngine.Vector2;
 using Vector3 = UnityEngine.Vector3;
 
-public class Arrow : MonoBehaviour
+public abstract class Arrow : MonoBehaviour
 {
     [SerializeField] private float _speed;
-    public float Speed => _speed;
-
-    private Tower _tower;
     private Vector3 Target;
 
-    private void Awake() => _tower = FindObjectOfType<Tower>();
+    protected Tower Tower { get; private set; }
+    public ArrowType ArrowType;
+    public float Speed => _speed;
+
+    private void Awake() => Tower = FindObjectOfType<Tower>();
 
     private void FixedUpdate()
     {
-        Target = _tower.Finder.Target.Position;
+        Target = Tower.Finder.Target.Position;
         transform.position = Vector3.Lerp(transform.position, Target,
             _speed * Time.fixedDeltaTime);
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (!other.gameObject.TryGetComponent(out Enemy enemy)) return;
-        enemy.ApplyDamage(_tower.Shooter.Damage);
-        Destroy(gameObject);
     }
 }

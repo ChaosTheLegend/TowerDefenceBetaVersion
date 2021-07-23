@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Castle : MonoBehaviour, IDamageable
+public class Castle : MonoBehaviour
 {
     [SerializeField] private float _health;
 
