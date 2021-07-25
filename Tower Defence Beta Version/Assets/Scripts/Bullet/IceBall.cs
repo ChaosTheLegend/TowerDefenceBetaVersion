@@ -10,7 +10,7 @@ public class IceBall : Arrow
     
     private void OnTriggerEnter(Collider other)
     {
-        if (!other.gameObject.TryGetComponent(out Enemy enemy) && ArrowType is ArrowType.IceBall) return;
+        if (!other.gameObject.TryGetComponent(out Enemy enemy)) return;
         enemy.ApplyDamage(Tower.Shooter.Damage);
         _freeze = StartCoroutine(Freeze(enemy));
         Destroy(gameObject);

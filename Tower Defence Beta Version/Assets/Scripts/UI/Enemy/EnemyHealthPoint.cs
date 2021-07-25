@@ -24,7 +24,8 @@ public class EnemyHealthPoint : HealthBar
     }
 
     public override void OnChangeHealth(int health) => StartCoroutine(HealthBarInTimeCoroutine(health));
-
+    
+    //BUG HEALTH BAR COLOUR BUG
     private IEnumerator HealthBarInTimeCoroutine(int health)
     {
         Slider.DOValue(health, FillDuration);

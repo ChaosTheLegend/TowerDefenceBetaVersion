@@ -12,7 +12,6 @@ public abstract class Arrow : MonoBehaviour
     private Vector3 Target;
 
     protected Tower Tower { get; private set; }
-    public ArrowType ArrowType;
     public float Speed => _speed;
 
     private void Awake() => Tower = FindObjectOfType<Tower>();

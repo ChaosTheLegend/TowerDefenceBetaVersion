@@ -6,7 +6,7 @@ public class SimpleArrow : Arrow
 {
     private void OnTriggerEnter(Collider other)
     {
-        if (!other.gameObject.TryGetComponent(out Enemy enemy) && ArrowType is ArrowType.Arrow) return;
+        if (!other.gameObject.TryGetComponent(out Enemy enemy)) return;
         enemy.ApplyDamage(Tower.Shooter.Damage);
         Destroy(gameObject);
     }
