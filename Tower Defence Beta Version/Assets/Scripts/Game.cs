@@ -12,11 +12,7 @@ public class Game : MonoBehaviour
     [SerializeField] private Enemy _enemy;
     [SerializeField] private float _timeToSpawn;
     [SerializeField] private int _countOfEnemy;
-
-    public GameMode Mode { get; private set; }
-
-    private void Awake() => Mode = GameMode.TowerBuild;
-
+    
     private void Start() => Spawn();
 
     private void Spawn() => StartCoroutine(SpawnEnemy());
